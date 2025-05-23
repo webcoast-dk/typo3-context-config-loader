@@ -182,10 +182,10 @@ class Loader
     {
         // Security tip for production: putting the database password outside the document root!
         $dbConfig = [
-            'host' => 'localhost',
-            'database' => '',
-            'user' => '',
-            'password' => ''
+            'host' => null,
+            'database' => null,
+            'user' => null,
+            'password' => null
         ];
 
         if ($myCnfPath) {
@@ -207,10 +207,10 @@ class Loader
                 'DB' => [
                     'Connections' => [
                         'Default' => [
-                            'host' => $dbConfig['host'],
-                            'dbname' => $dbConfig['database'],
-                            'user' => $dbConfig['user'],
-                            'password' => $dbConfig['password']
+                            'host' => $dbConfig['host'] ?? $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['host'] ?? 'localhost',
+                            'dbname' => $dbConfig['database'] ?? $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['dbname'] ?? '',
+                            'user' => $dbConfig['user'] ?? $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['user'] ?? '',
+                            'password' => $dbConfig['password'] ?? $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['password'] ?? ''
                         ],
                     ],
                 ],
